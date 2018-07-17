@@ -23,7 +23,7 @@ export default class Home extends Component {
       let { hashtag } = this.state;
       hashtag = hashtag.replace(/\s/g, '').split('#');
       hashtag.shift();
-      const tweets = await axios.post(`https://quiet-cliffs-20902.herokuapp.com/twitter/getTweetsForHashtag`, { hashtag })
+      const tweets = await axios.post(`https://quiet-cliffs-20902.herokuapp.com/twitter/getTweetsForHashtag`, { hashtag: hashtag })
       const { data } = tweets;
       await this.setState({
         tweets: data.statuses,
