@@ -19,7 +19,8 @@ export default class Home extends Component {
   
   //gets the tweets for an associated hashtag
   async fetchTweets() {
-    if (this.state.hashtag.trim() !== '' && this.state.hashtag.includes('#')) {
+    this.state.hashtag.trim();
+    if (this.state.hashtag !== '' && this.state.hashtag.includes('#') && this.state.hashtag !== ('#')) {
       try {
         let { hashtag } = this.state;
         hashtag = hashtag.replace(/\s/g, '').split('#');
