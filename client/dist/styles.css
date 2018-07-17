@@ -1,0 +1,62 @@
+body {
+  background: #1dcaff;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+
+button, .button {
+  border: none;
+  color: white;
+  padding: 1em;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  background-color: #0084b4;
+  border-radius: 2px;
+}
+
+button:hover {
+  background: #00aced;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.fa-twitter {
+  background: #55ACEE;
+  color: white;
+  font-size: 3em;
+}
+
+input {
+  -webkit-appearance: none;
+  height: 40px;
+  width: 200px;
+  text-indent: 30px;
+  border-radius: 5px 0 0 5px;
+}
+
+#input {
+  position: relative;
+}
+
+
+.submit {
+  padding: 1em;
+}
+
+.tweet-box {
+  min-height: 100px;
+  border: 1px solid #c0deed;
+  margin: 2em;
+  background: white;
+}
+
+.tweet-box:hover {
+  box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+  border: 1px solid white;
+  background: #c0deed;
+  cursor: pointer;
+}
