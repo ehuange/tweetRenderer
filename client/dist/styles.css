@@ -61,6 +61,13 @@ input {
   display: inline-block;
 }
 
+.styled-select {
+  height: 29px;
+  overflow: hidden;
+  background-color: #0084b4;
+  color: white;
+}
+
 .submit {
   padding: 1em;
 }

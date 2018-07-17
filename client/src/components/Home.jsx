@@ -22,10 +22,9 @@ export default class Home extends Component {
   async fetchTweets() {
     try {
       let { hashtag } = this.state;
-      const { count } = this.state;
       hashtag = hashtag.replace(/\s/g, '').split('#');
       hashtag.shift();
-      const tweets = await axios.post(`https://quiet-cliffs-20902.herokuapp.com/twitter/getTweetsForHashtag`, { hashtag, count })
+      const tweets = await axios.post(`https://quiet-cliffs-20902.herokuapp.com/twitter/getTweetsForHashtag`, { hashtag })
       const { data } = tweets;
       await this.setState({
         tweets: data.statuses,
@@ -92,7 +91,7 @@ export default class Home extends Component {
           </button>
           <br/>
           Filter results: 
-          <select onChange={this.sliceTweets} defaultValue="30">
+          <select className={"styled-select"}onChange={this.sliceTweets} defaultValue="30">
             <option value="5">5</option>
             <option value="10">10</option>
             <option value="15">15</option>
