@@ -9,7 +9,6 @@ export default class Home extends Component {
       hashtag: '',
       tweets: [],
       storedTweets: [],
-      numberOfTweets: 15,
     }
     this.fetchTweets = this.fetchTweets.bind(this);
     this.grabHashtag = this.grabHashtag.bind(this);
