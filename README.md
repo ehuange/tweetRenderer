@@ -2,7 +2,7 @@
 
 ## Objective 
 
-Build a web application that to display N tweets with one or more hashtags
+Build a web application that to display tweets with one or more hashtags
 
 ## How to use
 
@@ -12,6 +12,10 @@ To run locally:
 - npm start
 - Open up http://localhost:3000 
 - (Port can be changed from 3000 if necessary)
+
+## This link is also live!
+
+https://quiet-cliffs-20902.herokuapp.com/
 
 ## Technologies
 
