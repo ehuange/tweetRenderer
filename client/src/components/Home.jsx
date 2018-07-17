@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Button from './Button.jsx'
+import SortingButton from './SortingButton.jsx'
 import axios from 'axios';
 
 export default class Home extends Component {
@@ -8,11 +8,13 @@ export default class Home extends Component {
     this.state = {
       hashtag: '',
       tweets: [],
-      numberOfTweets: 15
+      storedTweets: [],
+      numberOfTweets: 15,
     }
     this.fetchTweets = this.fetchTweets.bind(this);
     this.grabHashtag = this.grabHashtag.bind(this);
-    this.grabNumber = this.grabNumber.bind(this);
+    this.onEnterPress = this.onEnterPress.bind(this);
+    this.sliceTweets = this.sliceTweets.bind(this);
     this.sortCriteria = this.sortCriteria.bind(this);
   }
   
@@ -27,6 +29,7 @@ export default class Home extends Component {
       const { data } = tweets;
       await this.setState({
         tweets: data.statuses,
+        storedTweets: data.statuses,
         hashtag: '',
       })
     } catch (error) {
@@ -42,14 +45,23 @@ export default class Home extends Component {
     });
   }
 
-  //grabs the number of results
-  grabNumber(e) {
+  //fetches tweets on pressing of enter/return button
+  onEnterPress(e) {
+    if (e.which === 13) {
+      this.fetchTweets();
+    }
+  }
+
+  //slices tweets to specified number by user
+  sliceTweets(e) {
+    let newTweets = this.state.storedTweets
+    newTweets = newTweets.slice(0, parseInt(e.target.value));
     this.setState({
-      numberOfTweets: e.target.value
+      tweets: newTweets
     })
   }
 
-  //sorts tweets according to the criteria entered as an argument
+  //dynamically sorts tweets according to the criteria entered as an argument
   sortCriteria(criteria) {
     const sorted = this.state.tweets.sort((a, b) => {
       return b[criteria] - a[criteria];
@@ -73,16 +85,17 @@ export default class Home extends Component {
           value={this.state.hashtag}
           onChange={this.grabHashtag}
           placeholder="#apples #bananas #fruit"
+          onKeyPress={this.onEnterPress}
           />
-          <button className="submit" onClick={this.fetchTweets}> 
+          <button type="submit" className="submit" onClick={this.fetchTweets}> 
             Submit 
           </button>
           <br/>
           Filter results: 
-          <select onChange={this.grabNumber} value={this.state.numberOfTweets}>
+          <select onChange={this.sliceTweets} defaultValue="30">
             <option value="5">5</option>
             <option value="10">10</option>
-            <option value="15" selected="selected">15</option>
+            <option value="15">15</option>
             <option value="20">20</option>
             <option value="25">25</option>
             <option value="30">30</option>
@@ -91,19 +104,32 @@ export default class Home extends Component {
         <h2> Sort by: 
           <br/>
           <br/>
-          <Button value={'favorite_count'} name={'Favorite count'} press={this.sortCriteria}/>
-          <Button value={'retweet_count'} name={'Retweet count'} press={this.sortCriteria}/>
-          <Button value={'created_at'} name={'Time created'} press={this.sortCriteria}/>
+          <SortingButton value={'favorite_count'} name={'Favorite count'} press={this.sortCriteria}/>
+          <SortingButton value={'retweet_count'} name={'Retweet count'} press={this.sortCriteria}/>
+          <SortingButton value={'created_at'} name={'Time created'} press={this.sortCriteria}/>
         </h2>
         <div className="tweet-container">
           {this.state.tweets.length > 0 ? this.state.tweets.map((tweet, i) => {
             return (
               <div key={i}> 
                 <div className="tweet-box">
-                  <img src={tweet.user.profile_image_url}/> 
-                  <a href={tweet.user.url} target="_blank"> @{tweet.user.screen_name} </a>  : {tweet.text} tweeted at {tweet.created_at}
-                  <i className="far fa-heart"></i> {tweet.favorite_count}
-                  <i className="fas fa-retweet"></i> {tweet.retweet_count} 
+                  <img className="profile-img" src={tweet.user.profile_image_url}/> 
+                  <div className="tweet-name-container">
+                    {tweet.user.name} <a href={tweet.user.url} target="_blank"> @{tweet.user.screen_name} </a>
+                    <small>{tweet.created_at}</small>
+                  </div>
+                  <div className="tweet-text-container">
+                    {tweet.text}
+                    <br/>
+                    <div className="tweet-icon-container">
+                      <div className="favorite-container">
+                        <i className="far fa-heart"></i> {tweet.favorite_count}  
+                      </div>
+                      <div className="retweet-container">
+                        <i className="fas fa-retweet"></i> {tweet.retweet_count}
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div> 
             )

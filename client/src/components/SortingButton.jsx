@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // Dynamic button component for rendering different sorting methods
-export default class Button extends Component {
+export default class SortingButton extends Component {
   constructor(props) {
     super(props);
   }

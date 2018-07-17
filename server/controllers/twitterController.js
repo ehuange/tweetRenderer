@@ -46,7 +46,6 @@ module.exports = {
         return;
       } else {
         token = JSON.parse(result.body);
-        console.log('token is... ', token);
         getTweets(hashtag, token, (error, tweets) => {
           if (error) {
             console.log('error with getTweets', error);

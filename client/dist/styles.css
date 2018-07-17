@@ -30,6 +30,12 @@ button:hover {
   font-size: 3em;
 }
 
+.favorite-container {
+  min-width: 80px;
+  display: inline-block;
+  margin-left: 0.5em;
+}
+
 input {
   -webkit-appearance: none;
   height: 40px;
@@ -42,16 +48,47 @@ input {
   position: relative;
 }
 
+.profile-img {
+  height: 60px;
+  width: 60px;
+  vertical-align: middle;
+  float: left;
+  padding-left: 0.3em;
+}
+
+.retweet-container {
+  min-width: 80px;
+  display: inline-block;
+}
 
 .submit {
   padding: 1em;
 }
 
+.tweet-icon-container {
+  padding-top: 0.3em;
+}
+
+.tweet-name-container {
+  padding-left: 4.6em;
+}
+
+.tweet-text-container {
+  padding-top: 0.5em;
+  padding-left: 4.6em;
+}
+
+.tweet-container {
+  margin-left: 3em;
+  margin-right: 3em;
+}
+
 .tweet-box {
-  min-height: 100px;
+  min-height: 90px;
   border: 1px solid #c0deed;
-  margin: 2em;
   background: white;
+  text-align: left;
+  padding-top: 1em;
 }
 
 .tweet-box:hover {
@@ -59,4 +96,8 @@ input {
   border: 1px solid white;
   background: #c0deed;
   cursor: pointer;
+}
+
+.tweet-date-container {
+  padding-top: 1em;
 }
