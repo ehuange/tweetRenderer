@@ -19,21 +19,24 @@ export default class Home extends Component {
   
   //gets the tweets for an associated hashtag
   async fetchTweets() {
-    try {
-      let { hashtag } = this.state;
-      hashtag = hashtag.replace(/\s/g, '').split('#');
-      hashtag.shift();
-      const tweets = await axios.post(`https://quiet-cliffs-20902.herokuapp.com/twitter/getTweetsForHashtag`, { hashtag: hashtag })
-      const { data } = tweets;
-      console.log(data);
-      await this.setState({
-        tweets: data.statuses,
-        storedTweets: data.statuses,
-        hashtag: '',
-      })
-    } catch (error) {
-      console.log('Error with fetchTweets', error);
-      return;
+    if (this.state.hashtag.trim() !== '' && this.state.hashtag.includes('#')) {
+      try {
+        let { hashtag } = this.state;
+        hashtag = hashtag.replace(/\s/g, '').split('#');
+        hashtag.shift();
+        const tweets = await axios.post(`https://quiet-cliffs-20902.herokuapp.com/twitter/getTweetsForHashtag`, { hashtag: hashtag })
+        const { data } = tweets;
+        await this.setState({
+          tweets: data.statuses,
+          storedTweets: data.statuses,
+          hashtag: '',
+        })
+      } catch (error) {
+        console.log('Error with fetchTweets', error);
+        return;
+      }
+    } else {
+      alert('Please enter # before your hashtag')
     }
   }
 
