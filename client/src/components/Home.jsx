@@ -25,6 +25,7 @@ export default class Home extends Component {
       hashtag.shift();
       const tweets = await axios.post(`https://quiet-cliffs-20902.herokuapp.com/twitter/getTweetsForHashtag`, { hashtag: hashtag })
       const { data } = tweets;
+      console.log(data);
       await this.setState({
         tweets: data.statuses,
         storedTweets: data.statuses,
