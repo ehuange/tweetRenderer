@@ -17,6 +17,7 @@ app.use(helmet());
 app.use(bp.json());
 app.use(bp.urlencoded({ extended: true }));
 app.use(morgan('short'));
+
 // allow CORS requests
 app.use(
   cors({
@@ -27,6 +28,7 @@ app.use(
 
 app.use(router);
 
+//Serves the static files
 app.use(express.static(path.join(__dirname + '../../client/dist')));
 
 
