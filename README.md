@@ -2,7 +2,7 @@
 
 ## Objective 
 
-Build a web application that to display tweets with one or more hashtags
+Build a web application that can display tweets with one or more hashtags
 
 ## How to use
 
